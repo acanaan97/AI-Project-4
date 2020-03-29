@@ -42,23 +42,28 @@
 ;;;* QUERY RULES *
 ;;;***************
 
-(defrule price 
+(defrule price ""
     ?ins <- (object (is-a PRICEPOINT) )
 => 
-    (send ?ins put-price-type (ask-question "Do you want the activity to be free, cheap, or expensive"  free cheap expensive )) )
+    (send ?ins put-price_type (ask-question "Do you want the activity to be free, cheap, or expensive"  free cheap expensive )) )
 
-(defrule location
+(defrule location ""
     ?ins <- (object (is-a DEST) )
 => 
     (send ?ins put-geography (ask-question "Do you want the activity to be on land or water?"  land water )) )
 
-(defrule temperature
-    ?ins <- (object (is-a DEST) )
+(defrule land ""
+    ?ins <- (object (is-a DEST) (geography land))
+=> 
+    (send ?ins put-temp (ask-question "Do you want the activity to be warm or cold?"  warm cold )) )
+
+(defrule water ""
+    ?ins <- (object (is-a DEST) (geography water))
 => 
     (send ?ins put-temp (ask-question "Do you want the activity to be warm or cold?"  warm cold )) )
 
 ;rules
-(defrule is_hiking
+(defrule is_hiking (declare (salience -50))
     ?ins <- (object (is-a DEST) (temp warm) (geography land))
     ?acs <- (object (is-a PRICEPOINT) (price_type free))
 => 
