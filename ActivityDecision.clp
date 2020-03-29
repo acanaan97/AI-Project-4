@@ -60,4 +60,73 @@
 => 
     (send ?ins put-temp (ask-question "Do you want the activity to be warm or cold?"  warm cold )) )
 
-// RULES
+;rules
+(defrule hiking (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "Hiking would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule museum (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "Visiting a museum would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule wine-tasting (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "Wine tasting would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule ice-skating (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "Ice Skating would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule hockey-game (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "Going to see a hockey game would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule snowresort (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "A snow resort would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule waterpark (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "A water park would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule rafting (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "White water rafting would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule lap-swimming (declare (salience -50))
+    (object (is-a DEST) (temp ?t) (geography ?g))
+    (object (is-a PRICE) (price-type ?pt))
+=>
+    (printout "Lap Swimming would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
+
+(defrule surfing (declare (salience -50))
+	(object (is-a DEST) (temp ?t) (geography ?g))
+	(object (is-a PRICE) (price-type ?pt))
+=>
+	(printout "Surfing would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
+)
