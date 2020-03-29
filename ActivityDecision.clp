@@ -57,71 +57,70 @@
 => 
     (send ?ins put-temp (ask-question "Do you want the activity to be warm or cold?"  warm cold )) )
 
-;rules
-(defrule is_hiking
+// RULES
+(defrule is_hiking (declare (salience -50))
     ?ins <- (object (is-a DEST) (temp warm) (geography land))
-    ?acs <- (object (is-a PRICEPOINT) (price_type free))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type free))
 => 
-    (send ?ins put-activity hiking) )
+    (send ?ins (object (is-a DEST) put-activity hiking) ))
 
-(defrule is_museum (declare (salience -50))
+(defrule is_museum 
     ?ins <- (object (is-a DEST) (temp warm) (geography land))
-    ?acs <- (object (is-a PRICEPOINT) (price_type cheap))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type cheap))
 => 
-    (send ?ins put-activity Museum) )
+    (send ?ins (object (is-a DEST) put-activity Museum) ))
 
-(defrule is_wine-tasting (declare (salience -50))
+(defrule is_wine-tasting 
     ?ins <- (object (is-a DEST) (temp warm) (geography land))
-    ?acs <- (object (is-a PRICEPOINT) (price_type expensive))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type expensive))
 => 
-    (send ?ins put-activity wine-tasting) )
+    (send ?ins (object (is-a DES) put-activity wine-tasting) ))
 
-(defrule is_ice-skating (declare (salience -50))
+(defrule is_ice-skating 
     ?ins <- (object (is-a DEST) (temp cold) (geography land))
-    ?acs <- (object (is-a PRICEPOINT) (price_type free))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type free))
 => 
-    (send ?ins put-activity ice-skating) )
+    (send ?ins (object (is-a DES) put-activity ice-skating) ))
 
-(defrule is_hockey-game (declare (salience -50))
+(defrule is_hockey-game 
     ?ins <- (object (is-a DEST) (temp cold) (geography land))
-    ?acs <- (object (is-a PRICEPOINT) (price_type cheap))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type cheap))
 => 
-    (send ?ins put-activity hockey-game) )
+    (send ?ins (object (is-a DES) put-activity hockey-game) ))
 
-(defrule is_snow-resort (declare (salience -50))
+(defrule is_snow-resort 
     ?ins <- (object (is-a DEST) (temp cold) (geography land))
-    ?acs <- (object (is-a PRICEPOINT) (price_type expensive))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type expensive))
 => 
-    (send ?ins put-activity snow-resort) )
+    (send ?ins (object (is-a DES) put-activity snow-resort) ))
 
-(defrule is_waterpark (declare (salience -50))
+(defrule is_waterpark 
     ?ins <- (object (is-a DEST) (temp warm) (geography water))
-    ?acs <- (object (is-a PRICEPOINT) (price_type expensive))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type expensive))
 => 
-    (send ?ins put-activity waterpark) )
+    (send ?ins (object (is-a DES) put-activity waterpark) ))
 
-(defrule is_white-water-rafting (declare (salience -50))
+(defrule is_white-water-rafting 
     ?ins <- (object (is-a DEST) (temp cold) (geography water))
-    ?acs <- (object (is-a PRICEPOINT) (price_type expensive))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type expensive))
 => 
-    (send ?ins put-activity white-water-rafting) )
+    (send ?ins (object (is-a DES) put-activity white-water-rafting) ))
 
-(defrule is_lap-swimming
+(defrule is_lap-swimming 
     ?ins <- (object (is-a DEST) (temp warm) (geography water))
-    ?acs <- (object (is-a PRICEPOINT) (price_type free))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type free))
 => 
-    (send ?ins put-activity lap-swimming) )
+    (send ?ins (object (is-a DES) put-activity lap-swimming) ))
 
-(defrule is_surfing (declare (salience -50))
+(defrule is_surfing 
     ?ins <- (object (is-a DEST) (temp cold) (geography water))
-    ?acs <- (object (is-a PRICEPOINT) (price_type cheap))
+    ?ins <- (object (is-a PRIECEPOINT) (price_type cheap))
 => 
-    (send ?ins put-activity surfing) )
+    (send ?ins (object (is-a DES) put-activity surfing) ))
 
-
-(defrule decision (declare (salience -100))
+(defrule decision 
     (object (is-a DEST) (temp ?t) (geography ?g) (activity ?a))
-    (object (is-a PRICEPOINT) (price_type ?pt))
+    (object (is-a PRICE) (price-type ?pt))
 =>
     (printout "" ?a " would be a good activity since it's " ?pt " and it is " ?t " and involves " ?g crlf)
 )
