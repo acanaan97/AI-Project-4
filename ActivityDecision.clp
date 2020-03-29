@@ -57,7 +57,9 @@
 => 
     (send ?ins put-temp (ask-question "Do you want the activity to be warm or cold?"  warm cold )) )
 
-// RULES
+;;;***************
+;;;* RULES *
+;;;***************
 (defrule is_hiking (declare (salience -50))
     ?ins <- (object (is-a DEST) (temp warm) (geography land))
     ?ins <- (object (is-a PRIECEPOINT) (price_type free))
